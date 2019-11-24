@@ -1,6 +1,7 @@
 package com.zenhomes.service;
 
 
+import com.zenhomes.exception.CounterNotFoundException;
 import com.zenhomes.model.Consumption;
 import com.zenhomes.model.Counter;
 import com.zenhomes.model.VillageConsumption;
@@ -33,7 +34,7 @@ public class CounterService {
             throw new RuntimeException(DATABASE_ERROR_MESSAGE);
         }
         return Optional.ofNullable(counter)
-                .orElseThrow(()-> new RuntimeException("Id Counter Not Found"));
+                .orElseThrow(CounterNotFoundException::new);
     }
 
     public void postConsumption(Consumption consuption){
@@ -52,7 +53,6 @@ public class CounterService {
             throw new RuntimeException(DATABASE_ERROR_MESSAGE);
         }
 
-        return Optional.ofNullable(villages)
-                .orElseThrow(()-> new RuntimeException("Any consumption was found."));
+        return villages;
     }
 }

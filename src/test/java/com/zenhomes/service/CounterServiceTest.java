@@ -1,5 +1,6 @@
 package com.zenhomes.service;
 
+import com.zenhomes.exception.CounterNotFoundException;
 import com.zenhomes.model.Counter;
 import com.zenhomes.model.VillageConsumption;
 import com.zenhomes.repository.ConsumptionRepository;
@@ -14,6 +15,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.mockito.Mockito.doNothing;
@@ -40,7 +42,7 @@ public class CounterServiceTest {
         Assert.assertEquals(CounterStub.buildCounter().getName(), counterById.getName());
     }
 
-    @Test(expected = Exception.class)
+    @Test(expected = CounterNotFoundException.class)
     public void shouldReturnExceptionWhenNotFoundId(){
         Long id = 1L;
 
@@ -68,14 +70,15 @@ public class CounterServiceTest {
         Assert.assertEquals(VillageConsumptionStub.buildVillageConsumptions(), consumptions);
     }
 
-    @Test(expected = Exception.class)
-    public void shoulReturnExceptionWhenNotFoundConsumptions(){
+    @Test()
+    public void shoulReturnEmptyListWhenNotFoundConsumptions(){
         int duration = 1;
 
         when(consumptionRepository.getConsumptions(duration))
-                .thenReturn(null);
+                .thenReturn(new ArrayList<VillageConsumption>());
 
-        counterService.getConsumptions(duration);
+        List<VillageConsumption> consumptions = counterService.getConsumptions(duration);
+        Assert.assertEquals(consumptions, new ArrayList<VillageConsumption>());
 
     }
 }
