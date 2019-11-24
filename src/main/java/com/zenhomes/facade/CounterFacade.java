@@ -1,7 +1,6 @@
 package com.zenhomes.facade;
 
 
-
 import com.zenhomes.input.ConsumptionInput;
 import com.zenhomes.mapper.ConsumptionMapper;
 import com.zenhomes.mapper.CounterMapper;
@@ -30,10 +29,7 @@ public class CounterFacade {
     }
 
     public ConsumptionOutput getConsumptions(int registrationTime){
-        ConsumptionOutput consumptionOutput = new ConsumptionOutput(VillageConsuptionMapper
+        return new ConsumptionOutput(VillageConsuptionMapper
                 .mapToList(counterService.getConsumptions(registrationTime)));
-        return  consumptionOutput;
-//        return new ConsumptionOutput(VillageConsuptionMapper
-//                .mapToList(counterService.getConsumptions(registrationTime)));
     }
 }

@@ -1,7 +1,6 @@
 package com.zenhomes.model;
 
 import lombok.Data;
-
 import javax.persistence.*;
 
 @Entity

@@ -8,6 +8,7 @@ import com.zenhomes.repository.ConsumptionRepository;
 import com.zenhomes.repository.CounterRepository;
 import org.springframework.stereotype.Service;
 
+import javax.xml.ws.http.HTTPException;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,7 +27,6 @@ public class CounterService {
         this.consumptionRepository = consumptionRepository;
     }
 
-    /*todo -- Fazer exception personalizadas*/
     public Counter getCounterById(Long id){
         Counter counter;
         try{
@@ -45,7 +45,7 @@ public class CounterService {
     public List<VillageConsumption> getConsumptions(int registrationTime){
         List<VillageConsumption> villages;
         try {
-            villages = consumptionRepository.getConsumptions();
+            villages = consumptionRepository.getConsumptions(registrationTime);
         }catch (Exception e){
             throw new RuntimeException(DATABASE_ERROR_MESSAGE);
         }

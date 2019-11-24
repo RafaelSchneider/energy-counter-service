@@ -33,10 +33,12 @@ public class ConsumptionRepository {
             .executeUpdate();
     }
 
-    public List<VillageConsumption> getConsumptions(){
+    public List<VillageConsumption> getConsumptions(Integer duration){
 
         String sql = "select village_name, sum(amount) as consuption from  energy_consumptions " +
                 " ec, counters c where ec.id_counter = c.id " +
+                " and ec.date_time > dateadd( hour, - " + duration.toString() +
+                ", CURRENT_TIMESTAMP())" +
                 " group by village_name ";
 
 
@@ -47,6 +49,5 @@ public class ConsumptionRepository {
                         rs.getBigDecimal("consuption")
                 ));
         return villages;
-
     }
 }
