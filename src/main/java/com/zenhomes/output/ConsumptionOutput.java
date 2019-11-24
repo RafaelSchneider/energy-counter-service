@@ -8,5 +8,5 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 public class ConsumptionOutput {
-    private List<VillageConsuptionOutput> villages;
+    private List<VillageConsumptionOutput> villages;
 }

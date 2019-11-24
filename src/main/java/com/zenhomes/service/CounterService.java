@@ -8,13 +8,11 @@ import com.zenhomes.repository.ConsumptionRepository;
 import com.zenhomes.repository.CounterRepository;
 import org.springframework.stereotype.Service;
 
-import javax.xml.ws.http.HTTPException;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class CounterService {
-
 
     private CounterRepository counterRepository;
     private ConsumptionRepository consumptionRepository;
@@ -39,7 +37,11 @@ public class CounterService {
     }
 
     public void postConsumption(Consumption consuption){
-        consumptionRepository.postConsumption(consuption);
+        try {
+            consumptionRepository.postConsumption(consuption);
+        }catch (Exception e){
+            throw new RuntimeException(DATABASE_ERROR_MESSAGE);
+        }
     }
 
     public List<VillageConsumption> getConsumptions(int registrationTime){

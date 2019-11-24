@@ -12,7 +12,7 @@ import java.math.BigDecimal;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class VillageConsuptionOutput {
+public class VillageConsumptionOutput {
     private String village_name;
     private BigDecimal consumption;
 }
