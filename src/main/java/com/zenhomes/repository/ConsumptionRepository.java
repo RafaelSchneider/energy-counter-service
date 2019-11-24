@@ -24,7 +24,7 @@ public class ConsumptionRepository {
 
     @Transactional
     public void postConsumption(@Param("consumption") Consumption consumption) {
-        String insert = "INSERT INTO energy_consuptions(id_counter, amount, date_time) " +
+        String insert = "INSERT INTO energy_consumptions(id_counter, amount, date_time) " +
                 "values (?, ?, ?)";
         entityManager.createNativeQuery(insert)
             .setParameter(1, consumption.getId_counter())

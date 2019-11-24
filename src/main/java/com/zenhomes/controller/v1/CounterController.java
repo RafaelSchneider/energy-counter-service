@@ -27,9 +27,9 @@ public class CounterController {
     }
 
     @PostMapping("/counter_callback")
-    public HttpStatus postConsuptions(@RequestBody ConsumptionInput consuption){
+    public Object postConsuptions(@RequestBody ConsumptionInput consuption){
         counterFacade.postConsuption(consuption);
-        return HttpStatus.NO_CONTENT;
+        return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
     }
 
     @GetMapping("/consumption_report")
